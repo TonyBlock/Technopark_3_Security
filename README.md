@@ -1,7 +1,11 @@
 # Technopark_3_Security
 
 ### How to use
-
+0. For HTTPS connections
+```
+sh genCA.sh
+bash genCert.bash
+```
 1. Build docker container
 ```
 docker build -t server .
