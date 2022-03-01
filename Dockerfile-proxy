@@ -1,0 +1,11 @@
+FROM golang:latest
+
+RUN mkdir /proxy
+
+ADD . /proxy/
+
+WORKDIR /proxy
+
+RUN go build -o main ./proxy
+
+CMD ["/proxy/main"]

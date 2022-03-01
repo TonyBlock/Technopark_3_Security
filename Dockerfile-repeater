@@ -1,0 +1,11 @@
+FROM golang:latest
+
+RUN mkdir /repeater
+
+ADD . /repeater/
+
+WORKDIR /repeater
+
+RUN go build -o main ./repeater
+
+CMD ["/repeater/main"]

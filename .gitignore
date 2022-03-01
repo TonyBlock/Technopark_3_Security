@@ -17,6 +17,11 @@
 # IDEA
 .idea/
 
+# certificates
+certs/
+*.key
+*.crt
+
 # server
 /Technopark_3_Security
 

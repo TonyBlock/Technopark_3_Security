@@ -1,4 +1,4 @@
-package proxy
+package proxyHandlers
 
 import (
 	"context"
@@ -170,7 +170,7 @@ func certificateLookupByName(name string) (*tls.Certificate, error) {
 	return &tlsCert, nil
 }
 
-func handleConnectHTTPS(w http.ResponseWriter, req *http.Request) {
+func HandleConnectHTTPS(w http.ResponseWriter, req *http.Request) {
 	// Trying to get DNS name
 	name, _, err := net.SplitHostPort(req.Host)
 	if err != nil || name == "" {
@@ -261,7 +261,7 @@ func handleConnectHTTPS(w http.ResponseWriter, req *http.Request) {
 	<-ch
 }
 
-func handleHTTP(w http.ResponseWriter, req *http.Request) {
+func HandleHTTP(w http.ResponseWriter, req *http.Request) {
 	response, err := http.DefaultTransport.RoundTrip(req)
 	if err != nil {
 		fmt.Println(err)
@@ -280,13 +280,5 @@ func handleHTTP(w http.ResponseWriter, req *http.Request) {
 	if err != nil {
 		fmt.Println(err)
 		return
-	}
-}
-
-func HandlerProxyRequest(w http.ResponseWriter, req *http.Request) {
-	if req.Method == http.MethodConnect {
-		handleConnectHTTPS(w, req)
-	} else {
-		handleHTTP(w, req)
 	}
 }
