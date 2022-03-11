@@ -104,8 +104,7 @@ func (repeater *Repeater) HandleScanRequest(w http.ResponseWriter, req *http.Req
 
 		response, err := http.DefaultTransport.RoundTrip(resReqWithParam)
 		if err != nil {
-			fmt.Println(err)
-			return
+			continue
 		}
 
 		if response.StatusCode == http.StatusOK {
